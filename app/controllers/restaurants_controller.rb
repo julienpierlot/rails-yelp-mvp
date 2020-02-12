@@ -5,7 +5,7 @@ class RestaurantsController < ApplicationController
 
   def show
     @restaurant = Restaurant.find(params[:id])
-    @reviews = @restaurant.reviews
+    @review = Review.new
   end
 
   def new
@@ -15,6 +15,7 @@ class RestaurantsController < ApplicationController
   def create
     @restaurant = Restaurant.new(restaurant_params)
     if @restaurant.save
+      lash[:success] = "The restaurant was created!"
       redirect_to restaurant_path(@restaurant)
     else
       render :new
